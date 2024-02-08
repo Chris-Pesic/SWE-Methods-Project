@@ -1,0 +1,17 @@
+@startuml
+
+actor HR as "System User"
+
+rectangle Database
+
+rectangle "Country Info System" {
+    usecase UC4 as "Request Report"
+
+    usecase UCa as "Print Report"
+
+    HR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
