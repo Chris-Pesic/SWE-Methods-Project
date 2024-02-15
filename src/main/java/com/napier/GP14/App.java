@@ -6,7 +6,14 @@ public class App
 {
     public static void main(String[] args)
     {
-        //System.out.println("Boo yah!");
+
+
+        //Basic Structure of code
+        //Read in SQl Database into array of objects
+        //Offer selection menu of report types to user, selected via input of a number.
+        //Second menu for level of report requested, eg: country or city
+        //Using Primary Key variables in the various objects fulfill the requested reports parameters
+        //Print the report
 
         Scanner keyboard = new Scanner(System.in);  // Create a Scanner object
 
@@ -20,7 +27,7 @@ public class App
         System.out.println("G. Complex");
 
         String selection = keyboard.nextLine();
-        while(!(selection.equals("A"))){
+        while(!(selection.equals("A") || selection.equals("B"))){
             System.out.println("Invalid choice, please re-enter");
             selection = keyboard.nextLine();
         }
@@ -34,16 +41,32 @@ public class App
             //doesnt appear to work on the intellij "terminal"
             System.out.println("Please enter the country you wish to get a report on");
             selection = keyboard.nextLine();
-            //following line will perform a function called country report by passing the value of selection to it
-            //countryReport(selection);
+            //following line will perform a function called cityReport by passing the value of selection to it
+            countryReport(selection);
+
+        }
+
+        if(selection.equals("B")){
+            //should clear screen to keep things tidy
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            //doesnt appear to work on the intellij "terminal"
+            System.out.println("Please enter the city you wish to get a report on");
+            selection = keyboard.nextLine();
+            //following line will perform a function called cityReport by passing the value of selection to it
+            //cityReport(selection);
 
         }
     }
 
-    //Basic Structure of code
-    //Read in SQl Database into array of objects
-    //Offer selection menu of report types to user, selected via input of a number.
-    //Second menu for level of report requested, eg: country or city
-    //Using Primary Key variables in the various objects fulfill the requested reports parameters
-    //Print the report
+    public static void countryReport(String Country){
+        System.out.println(Country);
+        //look for country in array of object type country
+        //if found display the requested values
+        //else return error message
+    }
+
+
+
+
 }
