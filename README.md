@@ -2,8 +2,8 @@
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Chris-Pesic/SWE-Methods-Project/main.yml?branch=master)
 
-[![LICENSE](https://img.shields.io/github/license/Chris-Pesic/sem.svg?style=flat-square)](https://github.com/Chris-Pesic/sem/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/Chris-Pesic/SWE-Methods-Project.svg?style=flat-square)](https://github.com/Chris-Pesic/SWE-Methods-Project/blob/master/LICENSE)
 
-[![Releases](https://img.shields.io/github/release/Chris-Pesic/sem/all.svg?style=flat-square)](https://github.com/Chris-Pesic/sem/releases)
+[![Releases](https://img.shields.io/github/release/Chris-Pesic/SWE-Methods-Project/all.svg?style=flat-square)](https://github.com/Chris-Pesic/SWE-Methods-Project/releases)
 
 
