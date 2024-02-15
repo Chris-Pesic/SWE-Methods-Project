@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+actor 1 as "organisation"
+
+rectangle Database
+
+rectangle "world db system" {
+usecase UC1 as "get capital cities in the world/continent/region"
+
+usecase UC2 as "Sort from largest to smallest "
+1 - UC1
+UC1 ..> UC2 : include
+UC1 - Database
+}
+@enduml
