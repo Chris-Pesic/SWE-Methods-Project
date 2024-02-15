@@ -25,6 +25,7 @@ public class App
         System.out.println("E. Population of ___");
         System.out.println("F. Language");
         System.out.println("G. Complex");
+        //complex leads to further menus to access the users specific requirements
 
         String selection = keyboard.nextLine();
         while(!(selection.equals("A") || selection.equals("B"))){
@@ -61,6 +62,13 @@ public class App
 
     public static void countryReport(String Country){
         System.out.println(Country);
+        //look for country in array of object type country
+        //if found display the requested values
+        //else return error message
+    }
+
+    public static void cityReport(String City){
+        System.out.println(City);
         //look for country in array of object type country
         //if found display the requested values
         //else return error message
