@@ -36,7 +36,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.sem.App</mainClass>
+                            <mainClass>com.napier.GP14.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
