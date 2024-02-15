@@ -42,7 +42,7 @@ public class App
             //doesnt appear to work on the intellij "terminal"
             System.out.println("Please enter the country you wish to get a report on");
             selection = keyboard.nextLine();
-            //following line will perform a function called cityReport by passing the value of selection to it
+            //following line will perform a function called countryReport by passing the value of selection to it
             countryReport(selection);
 
         }
@@ -69,7 +69,7 @@ public class App
 
     public static void cityReport(String City){
         System.out.println(City);
-        //look for country in array of object type country
+        //look for country in array of object type city
         //if found display the requested values
         //else return error message
     }
