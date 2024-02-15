@@ -1,0 +1,9 @@
+User stories:
+
+As a Population analyst, I can search for countries or cities by population so that it aids my research
+
+As a member of the general public, I can generate reports so I can find the country or city I'm looking for from the database based on my specifications.
+
+As a member of the UN, I can generate reports reports regularly for population and language usage data so I can display it for meetings.
+
+As a geography student, I can search for specific cities so I can find which region and country it is located in.
