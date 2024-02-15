@@ -20,6 +20,10 @@ public class App
         System.out.println("G. Complex");
 
         String selection = keyboard.nextLine();
+        while(!(selection.equals("A"))){
+            System.out.println("Invalid choice, please re-enter");
+            selection = keyboard.nextLine();
+        }
 
 
 
@@ -28,7 +32,11 @@ public class App
             System.out.print("\033[H\033[2J");
             System.out.flush();
             //doesnt appear to work on the intellij "terminal"
-            System.out.println("Country Report");
+            System.out.println("Please enter the country you wish to get a report on");
+            selection = keyboard.nextLine();
+            //following line will perform a function called country report by passing the value of selection to it
+            //countryReport(selection);
+
         }
     }
 
