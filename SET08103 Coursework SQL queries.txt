@@ -1,0 +1,170 @@
+All the countries in the world organised by largest population to smallest.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+ORDER BY Population DESC;
+
+All the countries in a continent organised by largest population to smallest.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+WHERE Continent='INPUT'
+ORDER BY Population DESC;
+
+All the countries in a region organised by largest population to smallest.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+WHERE Region='INPUT'
+ORDER BY Population DESC;
+
+The top N populated countries in the world where N is provided by the user.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+ORDER BY Population DESC;
+LIMIT N;
+
+The top N populated countries in a continent where N is provided by the user.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+WHERE Continent='INPUT'
+ORDER BY Population DESC;
+LIMIT N;
+
+The top N populated countries in a region where N is provided by the user.
+
+SELECT Code, Name, Continent, Region, Population, Capital
+FROM country
+WHERE Region='INPUT'
+ORDER BY Population DESC;
+LIMIT N;
+
+All the cities in the world organised by largest population to smallest.
+
+SELECT Name, CountryCode AS "Country", District, Population
+FROM city
+ORDER BY Population DESC;
+
+All the cities in a continent organised by largest population to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Continent='INPUT'
+ORDER BY Population DESC;
+
+All the cities in a region organised by largest population to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Region='INPUT'
+ORDER BY Population DESC;
+
+All the cities in a country organised by largest population to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Name='INPUT'
+ORDER BY Population DESC;
+
+All the cities in a district organised by largest population to smallest.
+
+SELECT Name, CountryCode AS "Country", District, Population
+FROM city
+WHERE District='INPUT'
+ORDER BY Population DESC;
+
+The top N populated cities in the world where N is provided by the user.
+
+SELECT Name, CountryCode AS "Country", District, Population
+FROM city
+ORDER BY Population DESC;
+LIMIT N;
+
+The top N populated cities in a continent where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Continent='INPUT'
+ORDER BY Population DESC
+LIMIT N;
+
+The top N populated cities in a region where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Region='INPUT'
+ORDER BY Population DESC
+LIMIT N;
+
+The top N populated cities in a country where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.CountryCode=country.Code
+WHERE country.Name='INPUT'
+ORDER BY Population DESC
+LIMIT N;
+
+The top N populated cities in a district where N is provided by the user.
+
+SELECT Name, CountryCode AS "Country", District, Population
+FROM city
+WHERE District='INPUT'
+ORDER BY Population DESC;
+LIMIT N;
+
+All the capital cities in the world organised by largest population to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+ORDER BY Population DESC;
+
+All the capital cities in a continent organised by largest population to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+WHERE country.Continent='INPUT'
+ORDER BY Population DESC;
+
+All the capital cities in a region organised by largest to smallest.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+WHERE country.Region='INPUT'
+ORDER BY Population DESC;
+
+The top N populated capital cities in the world where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+ORDER BY Population DESC
+LIMIT N;
+
+The top N populated capital cities in a continent where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+WHERE country.Continent='INPUT'
+ORDER BY Population DESC
+LIMIT N;
+
+The top N populated capital cities in a region where N is provided by the user.
+
+SELECT city.Name, country.Name AS "Country", city.District, city.Population
+FROM city JOIN country ON city.ID=country.Capital
+WHERE country.Region='INPUT'
+ORDER BY Population DESC
+LIMIT N;
+
+The population of people, people living in cities, and people not living in cities in each continent.
+
+
+
+The population of people, people living in cities, and people not living in cities in each region.
+
+
+
+The population of people, people living in cities, and people not living in cities in each country.
+
+
