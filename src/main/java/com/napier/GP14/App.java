@@ -2,6 +2,7 @@ package com.napier.GP14;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class App
 {
@@ -18,14 +19,16 @@ public class App
         // Extract COUNTRY information
         ArrayList<Country> countries = a.getAllCountries();
 
+        //Extract city information
+        ArrayList<City> cities = a.getAllCities();
+
         //List of all Countries in order of descending population
-        a.printCountriesinOrder(countries);
+        //a.printCountriesinOrder(countries);
 
-        //Print all salaries
-        // a.printSalaries(employees);
+        //List of all Cities in order of descending population
+        a.printCitiesinOrder(cities, countries);
 
-        // Test the size of the returned data - should be 240124
-        //System.out.println(employees.size());
+
 
 
 
@@ -87,17 +90,7 @@ public class App
         }
     }
 
-    public void displayCountry(Country cou) {
-        if (cou != null) {
-            System.out.println(
-                    cou.Code + " "
-                    + cou.Name + " "
-                    + cou.Continent + " "
-                    + cou.Region + " "
-                    + cou.Population + " "
-                    + cou.Capital);
-        }
-    }
+
 
     public ArrayList<Country> getAllCountries() {
         try {
@@ -142,6 +135,57 @@ public class App
                             + cou.Region + " "
                             + cou.Population + " "
                             + cou.Capital);
+        }
+    }
+
+    public ArrayList<City> getAllCities() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, District, city.Population, city.CountryCode "
+                            + "FROM city, country "
+                            + "WHERE country.Code = city.CountryCode "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                City cit = new City();
+                cit.Name = rset.getString("city.Name");
+                cit.CountryCode = rset.getString("city.CountryCode");
+                cit.District = rset.getString("city.District");
+                cit.Population = rset.getInt("city.Population");
+
+                cities.add(cit);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    public void printCitiesinOrder(ArrayList<City> cities, ArrayList<Country> countries){
+        // Loop over all cities in the list
+        for (City cit : cities) {
+            String countryName = new String();
+            for(Country cou: countries) {
+                if (Objects.equals(cou.Code, cit.CountryCode))
+                {
+                    countryName = cou.Name;
+                    break; // stops loop when result is found to improve efficiency
+                }
+            }
+            System.out.println(
+                    cit.Name + " "
+                            + countryName + " "
+                            + cit.District + " "
+                            + cit.Population + " ");
+
         }
     }
 }
