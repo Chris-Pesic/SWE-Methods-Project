@@ -26,7 +26,19 @@ public class App
         //a.printCountriesinOrder(countries);
 
         //List of all Cities in order of descending population
-        a.printCitiesinOrder(cities, countries);
+        //a.printCitiesinOrder(cities, countries);
+
+        //List of all the cities in a continent organised by largest population to smallest.
+        //a.printCitiesInContinentOrdered(cities, countries, "Europe");
+
+        //List of all the cities in a region organised by largest population to smallest.
+        //a.printCitiesInRegionOrdered(cities, countries, "Western Africa");
+
+        //List of all the cities in a country organised by largest population to smallest.
+        a.printCitiesInCountryOrdered(cities, countries, "Germany");
+
+        //List of all the cities in a district organised by largest population to smallest.
+        a.printCitiesInDistrictOrdered(cities, countries, "Saksi", "Germany");
 
 
 
@@ -188,4 +200,79 @@ public class App
 
         }
     }
-}
+
+    public void printCitiesInContinentOrdered(ArrayList<City> cities, ArrayList<Country> countries, String continent){
+
+        for (City cit : cities) {
+            String countryName = new String();
+            for(Country cou: countries) {
+                if (Objects.equals(cou.Code, cit.CountryCode))
+                {
+                    countryName = cou.Name;
+                    break; // stops loop when result is found to improve efficiency
+                }
+            }
+            System.out.println(
+                    cit.Name + " "
+                            + countryName + " "
+                            + cit.District + " "
+                            + cit.Population + " ");
+
+        }
+    }
+
+    public void printCitiesInRegionOrdered(ArrayList<City> cities, ArrayList<Country> countries, String region){
+
+        for (Country cou : countries) {
+            if (cou.Region .equals(region)){
+                for(City cit: cities){
+                    if(cit.CountryCode .equals(cou.Code)){
+                        System.out.println(
+                                cit.Name + " "
+                                        + cou.Name + " "
+                                        + cit.District + " "
+                                        + cit.Population + " "
+                                        + region);
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void printCitiesInCountryOrdered(ArrayList<City> cities, ArrayList<Country> countries, String district){
+
+        for (City cit: cities) {
+            if (cit.District .equals(district)){
+                for(Country cou: countries){
+                    if(cit.CountryCode .equals(cou.Code)){
+                        System.out.println(
+                                cit.Name + " "
+                                        + cou.Name + " "
+                                        + cit.District + " "
+                                        + cit.Population + " ");
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void printCitiesInDistrictOrdered(ArrayList<City> cities, ArrayList<Country> countries, String district, String country){
+
+        for (City cit : cities) {
+                for(Country cou: countries){
+                    if(cou.Name .equals(country)){
+                        if (cit.District .equals(district)){
+                        System.out.println(
+                                cit.Name + " "
+                                        + cou.Name + " "
+                                        + cit.District + " "
+                                        + cit.Population + " ");
+                    }
+                }
+
+            }
+        }
+    }
+    }
