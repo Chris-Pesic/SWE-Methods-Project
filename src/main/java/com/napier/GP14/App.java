@@ -240,7 +240,7 @@ public class App
                 break;
             }
 
-            //print countries in the specified continent
+            //print countries in the specified region
             if(cou.Region .equals(region)){
                 System.out.println(
                         cou.Code + " "
