@@ -21,7 +21,20 @@ public class App
         //List of all Countries in order of descending population
         //a.printCountriesinOrder(countries);
 
-        a.printCountriesinOrderN(countries, 12);
+        //List of the top N populated countries in the world where N is provided by the user.
+        //a.printCountriesinOrderN(countries, 10);
+
+        //List of all the countries in a continent organised by largest population to smallest.
+        //a.printCountriesInContinentOrdered(countries, "Africa");
+
+        //List of all the countries in a region organised by largest population to smallest.
+        //a.printCountriesInRegionOrdered(countries, "Western Africa");
+
+        // List of the top N populated countries in a continent where N is provided by the user.
+        //a.printCountriesinContinentsOrderN(countries, "Europe", 10);
+
+        // List of the top N populated countries in a region where N is provided by the user.
+        a.printCountriesInRegionOrderN(countries, "Eastern Europe", 5);
 
         //Print all salaries
         // a.printSalaries(employees);
@@ -133,9 +146,7 @@ public class App
     }
 
     public void printCountriesinOrder(ArrayList<Country> countries){
-        // Print header
-        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-        // Loop over all employees in the list
+         // Loop over all employees in the list
         for (Country cou : countries) {
             System.out.println(
                     cou.Code + " "
@@ -148,18 +159,14 @@ public class App
     }
 
     public void printCountriesinOrderN(ArrayList<Country> countries, int n){
-        // Print header
-        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-        // Loop over all employees in the list
+         // Loop over all employees in the list
         int i;
         i=0;
+        // end loop when i goes past number specified
         for (Country cou : countries) {
             if(i >= n){
                 break;
-
             }
-
-
             System.out.println(
                     cou.Code + " "
                             + cou.Name + " "
@@ -167,9 +174,89 @@ public class App
                             + cou.Region + " "
                             + cou.Population + " "
                             + cou.Capital);
-
             i++;
         }
-
     }
+
+
+    public void printCountriesInContinentOrdered(ArrayList<Country> countries, String continent){
+
+        for (Country cou : countries) {
+            if (cou.Continent .equals(continent)){
+                System.out.println(
+                        cou.Code + " "
+                                + cou.Name + " "
+                                + cou.Continent + " "
+                                + cou.Region + " "
+                                + cou.Population + " "
+                                + cou.Capital);
+            }
+        }
+    }
+
+    public void printCountriesInRegionOrdered(ArrayList<Country> countries, String region){
+
+        for (Country cou : countries) {
+            if (cou.Region .equals(region)){
+                System.out.println(
+                        cou.Code + " "
+                                + cou.Name + " "
+                                + cou.Continent + " "
+                                + cou.Region + " "
+                                + cou.Population + " "
+                                + cou.Capital);
+            }
+        }
+    }
+
+    public void printCountriesinContinentsOrderN(ArrayList<Country> countries, String continent, int n){
+        // Loop over all employees in the list
+        int i;
+        i=0;
+        // end loop when i goes past number specified
+        for (Country cou : countries) {
+            if(i >= n){
+                break;
+            }
+
+            //print countries in the specified continent
+            if(cou.Continent .equals(continent)){
+            System.out.println(
+                    cou.Code + " "
+                            + cou.Name + " "
+                            + cou.Continent + " "
+                            + cou.Region + " "
+                            + cou.Population + " "
+                            + cou.Capital);
+                i++;
+            }
+
+        }
+    }
+
+    public void printCountriesInRegionOrderN(ArrayList<Country> countries, String region, int n){
+        // Loop over all employees in the list
+        int i;
+        i=0;
+        // end loop when i goes past number specified
+        for (Country cou : countries) {
+            if(i >= n){
+                break;
+            }
+
+            //print countries in the specified continent
+            if(cou.Region .equals(region)){
+                System.out.println(
+                        cou.Code + " "
+                                + cou.Name + " "
+                                + cou.Continent + " "
+                                + cou.Region + " "
+                                + cou.Population + " "
+                                + cou.Capital);
+                i++;
+            }
+
+        }
+    }
+
 }
