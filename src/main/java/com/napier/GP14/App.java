@@ -124,9 +124,13 @@ public class App
     }
 
     public void printCountriesinOrder(ArrayList<Country> countries){
-        // Print header
-        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-        // Loop over all employees in the list
+        // check countries is not null
+        if (countries == null)
+        {
+            System.out.println("No Countries");
+            return;
+        }
+         // Loop over all employees in the list
         for (Country cou : countries) {
             System.out.println(
                     cou.Code + " "
@@ -186,6 +190,18 @@ public class App
                             + cit.District + " "
                             + cit.Population + " ");
 
+        }
+    }
+
+    public void displayCity(City cit) {
+        if (cit != null) {
+            System.out.println(
+                    cit.Name + " "
+                            + cit.CountryCode + " "
+                            + cit.District + " "
+                            + cit.Population + " ");
+        } else {
+            System.out.println("No city information available.");
         }
     }
 }
