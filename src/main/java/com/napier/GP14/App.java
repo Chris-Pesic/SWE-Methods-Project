@@ -36,11 +36,7 @@ public class App
         // List of the top N populated countries in a region where N is provided by the user.
         a.printCountriesInRegionOrderN(countries, "Eastern Europe", 5);
 
-        //Print all salaries
-        // a.printSalaries(employees);
 
-        // Test the size of the returned data - should be 240124
-        //System.out.println(employees.size());
 
 
 
