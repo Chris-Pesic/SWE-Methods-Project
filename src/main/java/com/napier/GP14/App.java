@@ -21,11 +21,7 @@ public class App
         //List of all Countries in order of descending population
         a.printCountriesinOrder(countries);
 
-        //Print all salaries
-        // a.printSalaries(employees);
 
-        // Test the size of the returned data - should be 240124
-        //System.out.println(employees.size());
 
 
 
