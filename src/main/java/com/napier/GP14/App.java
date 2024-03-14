@@ -19,7 +19,9 @@ public class App
         ArrayList<Country> countries = a.getAllCountries();
 
         //List of all Countries in order of descending population
-        a.printCountriesinOrder(countries);
+        //a.printCountriesinOrder(countries);
+
+        a.printCountriesinOrderN(countries, 12);
 
         //Print all salaries
         // a.printSalaries(employees);
@@ -143,5 +145,31 @@ public class App
                             + cou.Population + " "
                             + cou.Capital);
         }
+    }
+
+    public void printCountriesinOrderN(ArrayList<Country> countries, int n){
+        // Print header
+        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        // Loop over all employees in the list
+        int i;
+        i=0;
+        for (Country cou : countries) {
+            if(i >= n){
+                break;
+
+            }
+
+
+            System.out.println(
+                    cou.Code + " "
+                            + cou.Name + " "
+                            + cou.Continent + " "
+                            + cou.Region + " "
+                            + cou.Population + " "
+                            + cou.Capital);
+
+            i++;
+        }
+
     }
 }
