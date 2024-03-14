@@ -1,80 +1,147 @@
 package com.napier.GP14;
 
-import java.util.Scanner;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
 
-        //Basic Structure of code
-        //Read in SQl Database into array of objects
-        //Offer selection menu of report types to user, selected via input of a number.
-        //Second menu for level of report requested, eg: country or city
-        //Using Primary Key variables in the various objects fulfill the requested reports parameters
-        //Print the report
+        // Create new Application
+        App a = new App();
 
-        Scanner keyboard = new Scanner(System.in);  // Create a Scanner object
+        // Connect to database
+        a.connect();
 
-        System.out.println("What report would you like?");
-        System.out.println("A. Country");
-        System.out.println("B. City");
-        System.out.println("C. Capital");
-        System.out.println("D. Population");
-        System.out.println("E. Population of ___");
-        System.out.println("F. Language");
-        System.out.println("G. Complex");
-        //complex leads to further menus to access the users specific requirements
 
-        String selection = keyboard.nextLine();
-        while(!(selection.equals("A") || selection.equals("B"))){
-            System.out.println("Invalid choice, please re-enter");
-            selection = keyboard.nextLine();
+        // Extract COUNTRY information
+        ArrayList<Country> countries = a.getAllCountries();
+
+        //List of all Countries in order of descending population
+        a.printCountriesinOrder(countries);
+
+        //Print all salaries
+        // a.printSalaries(employees);
+
+        // Test the size of the returned data - should be 240124
+        //System.out.println(employees.size());
+
+
+
+
+
+
+        // Disconnect from database
+        a.disconnect();
+
+    }
+
+    /**
+     * Connection to MySQL database.
+     */
+    private Connection con = null;
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect() {
+        try {
+            // Load Database driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load SQL driver");
+            System.exit(-1);
         }
 
-
-
-        if(selection.equals("A")){
-            //should clear screen to keep things tidy
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            //doesnt appear to work on the intellij "terminal"
-            System.out.println("Please enter the country you wish to get a report on");
-            selection = keyboard.nextLine();
-            //following line will perform a function called countryReport by passing the value of selection to it
-            countryReport(selection);
-
-        }
-
-        if(selection.equals("B")){
-            //should clear screen to keep things tidy
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            //doesnt appear to work on the intellij "terminal"
-            System.out.println("Please enter the city you wish to get a report on");
-            selection = keyboard.nextLine();
-            //following line will perform a function called cityReport by passing the value of selection to it
-            //cityReport(selection);
-
+        int retries = 100;
+        for (int i = 0; i < retries; ++i) {
+            System.out.println("Connecting to database...");
+            try {
+                // Wait a bit for db to start
+                Thread.sleep(5000);
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Successfully connected");
+                break;
+            } catch (SQLException sqle) {
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println(sqle.getMessage());
+            } catch (InterruptedException ie) {
+                System.out.println("Thread interrupted? Should not happen.");
+            }
         }
     }
 
-    public static void countryReport(String Country){
-        System.out.println(Country);
-        //look for country in array of object type country
-        //if found display the requested values
-        //else return error message
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect() {
+        if (con != null) {
+            try {
+                // Close connection
+                con.close();
+            } catch (Exception e) {
+                System.out.println("Error closing connection to database");
+            }
+        }
     }
 
-    public static void cityReport(String City){
-        System.out.println(City);
-        //look for country in array of object type city
-        //if found display the requested values
-        //else return error message
+    public void displayCountry(Country cou) {
+        if (cou != null) {
+            System.out.println(
+                    cou.Code + " "
+                    + cou.Name + " "
+                    + cou.Continent + " "
+                    + cou.Region + " "
+                    + cou.Population + " "
+                    + cou.Capital);
+        }
     }
 
+    public ArrayList<Country> getAllCountries() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country" + " "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next()) {
+                Country cou = new Country();
+                cou.Code = rset.getString("country.Code");
+                cou.Name = rset.getString("country.Name");
+                cou.Continent = rset.getString("country.Continent");
+                cou.Region = rset.getString("country.Region");
+                cou.Population = rset.getInt("country.Population");
+                cou.Capital = rset.getString("country.Capital");
+                countries.add(cou);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+            return null;
+        }
+    }
 
-
-
+    public void printCountriesinOrder(ArrayList<Country> countries){
+        // Print header
+        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        // Loop over all employees in the list
+        for (Country cou : countries) {
+            System.out.println(
+                    cou.Code + " "
+                            + cou.Name + " "
+                            + cou.Continent + " "
+                            + cou.Region + " "
+                            + cou.Population + " "
+                            + cou.Capital);
+        }
+    }
 }
