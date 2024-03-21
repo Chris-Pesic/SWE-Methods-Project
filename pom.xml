@@ -18,18 +18,7 @@
     </dependencies>
 
 
-    <dependencies>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
-            <version>3.6.4</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.18</version>
-        </dependency>
-    </dependencies>
+
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

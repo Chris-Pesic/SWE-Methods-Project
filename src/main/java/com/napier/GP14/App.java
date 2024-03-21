@@ -17,9 +17,12 @@ public class App
 
         // Extract COUNTRY information
         ArrayList<Country> countries = a.getAllCountries();
+        ArrayList<City> cities = a.getAllCities();
 
         //List of all Countries in order of descending population
-        a.printCountriesinOrder(countries);
+        //a.printCountriesinOrder(countries);
+        //System.out.println("testing");
+        a.printCitiesinOrder(cities);
 
 
 
@@ -126,6 +129,36 @@ public class App
         }
     }
 
+    public ArrayList<City> getAllCities() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, District, Population"
+                            + "FROM city" + " "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> cities = new ArrayList<City>();
+            while (rset.next()) {
+                City cit = new City();
+                cit.CountryCode = rset.getString("city.Code");
+                cit.Name = rset.getString("city.Name");
+                cit.District = rset.getString("city.District");
+                cit.Population = rset.getInt("city.Population");
+
+                cities.add(cit);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
     public void printCountriesinOrder(ArrayList<Country> countries){
         // Print header
         //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
@@ -138,6 +171,19 @@ public class App
                             + cou.Region + " "
                             + cou.Population + " "
                             + cou.Capital);
+        }
+    }
+
+    public void printCitiesinOrder(ArrayList<City> cities){
+        // Print header
+        //System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        // Loop over all employees in the list
+        for (City cit : cities) {
+            System.out.println(
+                    cit.CountryCode + " "
+                            + cit.Name + " "
+                            + cit.Population + " "
+                            + cit.District);
         }
     }
 }
