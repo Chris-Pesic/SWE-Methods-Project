@@ -20,14 +20,19 @@ public class AppIntegrationTest
 
     }
 
-   /* @Test
-    void testGetEmployee()
-    {
-        Employee emp = app.getEmployee(255530);
-        assertEquals(emp.emp_no, 255530);
-        assertEquals(emp.first_name, "Ronghao");
-        assertEquals(emp.last_name, "Garigliano");
+    @Test
+    void printCountries() {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        Country cou = new Country();
+        cou.Code = "B";
+        cou.Name = "X";
+        cou.Continent = "Y";
+        cou.Region = "Z";
+        cou.Population = 55000;
+        cou.Capital = "A";
+        countries.add(cou);
+        app.printCountriesinOrder(countries);
     }
 
-    */
+
 }
