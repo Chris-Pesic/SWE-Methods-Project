@@ -18,6 +18,7 @@ jobs:
       - name: Unit Tests
         run: mvn -Dtest=com.napier.GP14.AppTest test
 
+
   build:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04
