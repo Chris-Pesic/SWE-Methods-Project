@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Unit Tests
-        run: mvn -Dtest=com.napier.GP14.AppTest test -e
+        run: mvn -Dtest=com.napier.GP14.AppTest test -X
 
   IntegrationTests:
     name: Integration Tests
@@ -46,7 +46,7 @@ jobs:
           directory: ./target/site/jacoco
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
-          slug: <40624987>/<SWE-Methods-Project>
+          slug: 40624987/SWE-Methods-Project
 
 
   build:
