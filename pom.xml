@@ -8,16 +8,6 @@
     <artifactId>GroupProject14</artifactId>
     <version>0.1.0.1</version>
 
-
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
-        </dependency>
-    </dependencies>
-
-
     <dependencies>
         <dependency>
             <groupId>org.mongodb</groupId>
@@ -27,7 +17,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.18</version>
+            <version>8.0.28</version>
         </dependency>
     </dependencies>
 
