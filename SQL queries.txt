@@ -159,12 +159,18 @@ LIMIT N;
 
 The population of people, people living in cities, and people not living in cities in each continent.
 
-
+SELECT country.Continent, SUM(country.Population) AS "Total Population", SUM(city.Population) AS "In Cities", (SUM(city.Population) / SUM(country.Population))*100 AS "(%)", SUM(country.Population) - SUM(city.Population) AS "Not in Cities", ((SUM(ccountry.Population) - SUM(city.Population)) / SUM(country.Population))*100 AS "(%)"
+FROM city JOIN country ON city.CountryCode=country.Code
+GROUP BY country.Continent
 
 The population of people, people living in cities, and people not living in cities in each region.
 
-
+SELECT country.Region, SUM(country.Population) AS "Total Population", SUM(city.Population) AS "In Cities", (SUM(city.Population) / SUM(country.Population))*100 AS "(%)", SUM(country.Population) - SUM(city.Population) AS "Not in Cities", ((SUM(ccountry.Population) - SUM(city.Population)) / SUM(country.Population))*100 AS "(%)"
+FROM city JOIN country ON city.CountryCode=country.Code
+GROUP BY country.Region
 
 The population of people, people living in cities, and people not living in cities in each country.
 
-
+SELECT country.Name, SUM(country.Population) AS "Total Population", SUM(city.Population) AS "In Cities", (SUM(city.Population) / SUM(country.Population))*100 AS "(%)", SUM(country.Population) - SUM(city.Population) AS "Not in Cities", ((SUM(ccountry.Population) - SUM(city.Population)) / SUM(country.Population))*100 AS "(%)"
+FROM city JOIN country ON city.CountryCode=country.Code
+GROUP BY country.Name
